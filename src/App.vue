@@ -2,13 +2,13 @@
   <div id="app">
     <img @click="show = !show" id="vue-logo" alt="Vue logo" src="./assets/logo.png">
     <transition name="bounce">
-    <About
-      v-if="show"
-      title="portfolio"
-      firstname="christophe"
-      lastname="masdoumier"
-    />
+      <About v-show="show">
+        <span @click="show = !show" id="close">X</span>
+      </About>
     </transition>
+    <main>
+      <Card />
+    </main>
     <footer>
       <HelloWorld msg="Portfolio Vue.js App"/>
     </footer>
@@ -18,12 +18,14 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import About from './components/About.vue'
+import Card from './components/Card.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
-    About
+    About,
+    Card
   },
   data () {
     return {
@@ -39,9 +41,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  text-align: center;
 }
 #vue-logo {
+  position: absolute;
+  top: 10px;
+  left: CALC(100vw - 110px);
   width: 100px;
   cursor: pointer;
 }
@@ -53,13 +57,20 @@ export default {
 }
 @keyframes bounce-in {
   0% {
-    transform: scale(0);
+    transform: translateX(-100vw);
   }
   50% {
-    transform: scale(1.5);
+    transform: translateX(-75px);
   }
   100% {
-    transform: scale(1);
+    transform: translateX(0px);
   }
+}
+#close {
+  position: relative;
+  top: 50px;
+  left: CALC(100vw - 74px);
+  cursor: pointer;
+  font-size: 24px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div>
+    <div id="tv">
       <h3>{{ msg }}</h3>
       <p>
         For a guide and recipes on how to configure / customize this project,<br>
@@ -46,6 +46,7 @@ export default {
 <style scoped>
 h3 {
   margin: 40px 0 0;
+  padding-top: 50px;
 }
 ul {
   list-style-type: none;
@@ -59,5 +60,26 @@ a {
 }
 .hello {
  text-align: center;
+}
+#tv {
+  position: relative;
+  left: CALC(50% - 125px);
+  width: 250px;
+  height: 250px;
+  margin: 20px 0;
+  background: lightgray;
+  border-radius: 50% / 10%;
+  z-index: 1;
+}
+#tv:before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -5%;
+  left: -5%;
+  background: inherit;
+  border-radius: 5% / 50%;
+  z-index: -1;
 }
 </style>
