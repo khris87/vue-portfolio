@@ -1,48 +1,75 @@
 <template>
-  <div id="app">
-    <div class="cross" @click="show = !show">
-      <span :class="{topCross: show}"></span>
-      <span :class="{downCross: show}"></span>
-    </div>
+  <div id="app" @mousemove="moveColor">
+      <div id="outer" @click="showMenu">
+        <div id="innerUp"></div>
+        <div id="innerDown"></div>
+      </div>
     <transition name="bounce">
-      <About v-show="show">
-      </About>
+      <About v-show="show" />
     </transition>
     <main>
-      <Card />
     </main>
-    <footer>
-      <HelloWorld msg="Portfolio Vue.js App"/>
-    </footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import About from './components/About.vue'
-import Card from './components/Card.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    About,
-    Card
+    About
   },
   data () {
     return {
       show: false
+    }
+  },
+  methods: {
+    moveColor: function (e) {
+      const el = document.getElementById('app')
+      let x = e.pageX
+      let y = e.pageY
+      let avg = 150 + (parseInt((x + y) / 50))
+      let rgbColor = 'rgb(' + avg + ', ' + avg + ', ' + avg + ')'
+      let result = el.style.backgroundColor = rgbColor
+      return result
+    },
+    showMenu: function () {
+      this.show = !this.show
+      const closeUp = document.getElementById('innerUp')
+      const closeDown = document.getElementById('innerDown')
+      if (this.show) {
+        closeUp.style.transform = 'rotateZ(45deg)'
+        closeDown.style.transform = 'rotateZ(-45deg)'
+        closeUp.style.top = '50%'
+        closeDown.style.bottom = '50%'
+      } else {
+        closeUp.style.transform = 'rotateZ(0)'
+        closeDown.style.transform = 'rotateZ(0)'
+        closeUp.style.top = '20%'
+        closeDown.style.bottom = '20%'
+      }
     }
   }
 }
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(150,150,150);
+  transition: .2s;
 }
 .bounce-enter-active {
   animation: bounce-in .5s;
@@ -55,50 +82,40 @@ export default {
     transform: translateX(-100vw);
   }
   50% {
-    transform: translateX(-75px);
+    transform: translateX(-50px);
   }
   100% {
     transform: translateX(0px);
   }
 }
-.cross {
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#outer {
   position: absolute;
   top: 50px;
   right: 50px;
-  width: 40px;
-  height: 20px;
+  width: 70px;
+  height: 50px;
   cursor: pointer;
-  z-index: 3;
+  z-index: 1;
 }
-.cross > span {
-  display: block;
-  width: 40px;
-  height: 10px;
-  transform: translateY(0) rotateZ(0);
+#innerUp, #innerDown {
+  position: absolute;
+  content: '';
+  height: 1px;
+  width: inherit;
+  background: darkgrey;
+  left: 0;
+  transition: all 500ms;
 }
-.cross > span:first-child {
-  border-top: 1px solid #2c3e50;
+#innerUp {
+  top: 20%;
 }
-.cross > span:last-child {
-  top: 60px;
-  border-bottom: 1px solid #2c3e50;
-}
-.topCross {
-  animation: 1s crossTop;
-  animation-fill-mode: forwards;
-}
-.downCross {
-    animation: 1s crossDown;
-    animation-fill-mode: forwards;
-}
-@keyframes crossTop {
-  to {
-    transform: translateY(10px) rotateZ(45deg);
-  }
-}
-@keyframes crossDown {
-  to {
-    transform: translateY(-10px) rotateZ(-45deg);
-  }
+#innerDown {
+  bottom: 20%;
 }
 </style>

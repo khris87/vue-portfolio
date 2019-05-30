@@ -1,21 +1,30 @@
 <template>
   <div id="about">
-    <slot></slot>
-    <h3>{{ firstname }}</h3>
-    <h3>{{ lastname }}</h3>
-    <span>{{ city }}</span>
-    <span>{{ contact_tel }}</span>
-    <span>{{ contact_mail }}</span>
-    <span>{{ contact_linkedin }}</span>
-    <span>{{ contact_github }}</span>
-    <span class="speech">{{ speech }}</span>
+    <Navigation />
+    <div class="left_part">
+      <h3>{{ firstname }}</h3>
+      <h3>{{ lastname }}</h3>
+      <span>{{ city }}</span>
+      <span>{{ contact_tel }}</span>
+      <span>{{ contact_mail }}</span>
+      <span>{{ contact_linkedin }}</span>
+      <span>{{ contact_github }}</span>
+    </div>
+    <div class="center_part">
+      <span class="speech">{{ speech }}</span>
+    </div>
     <span class="background_title">{{ title }}</span>
   </div>
 </template>
 
 <script>
+import Navigation from './Navigation'
+
 export default {
   name: 'About',
+  components: {
+    Navigation
+  },
   data () {
     return {
       firstname: 'christophe',
@@ -33,6 +42,10 @@ export default {
 </script>
 
 <style scoped>
+  * {
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 36px;
+  }
   #about {
     position: fixed;
     top: 0;
@@ -42,15 +55,12 @@ export default {
     background-color: rgba(50,0,0,0.9);
     color: #FFFFFF;
     margin: auto;
-    /* z-index: 1; */
-    font-size: 36px;
     white-space: normal;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .background_title {
-    font-family: 'Gothic A1', sans-serif;
     font-family: 'Monoton', cursive;
-    font-size: 7.5em;
+    font-size: 8em;
     color: rgba(50,0,0,0.2);
     z-index: -1;
     position: absolute;
@@ -62,5 +72,14 @@ export default {
     width: 75%;
     text-align: justify;
     font-size: 0.6em;
+  }
+  .left_part {
+    width: 20%;
+    float: left;
+  }
+  .center_part {
+    width: 50%;
+    float: left;
+    margin-top: 25vh;
   }
 </style>
