@@ -57,6 +57,7 @@ export default {
     margin: auto;
     white-space: normal;
     overflow-x: hidden;
+    z-index: 5;
   }
   .background_title {
     font-family: 'Monoton', cursive;
