@@ -9,42 +9,15 @@
     </transition>
     <main>
       <div class="container">
-        <div class="column active">
-          <div class="content">
-            <h2>01</h2>
-            <article class="box">
-              <p>lorem ipsum</p>
-            </article>
-          </div>
-          <div class="bg bg1"></div>
-        </div>
-        <div class="column">
-          <div class="content">
-            <h2>02</h2>
-            <article class="box">
-              <p>lorem ipsum 2</p>
-            </article>
-          </div>
-          <div class="bg bg2"></div>
-        </div>
-        <div class="column">
-          <div class="content">
-            <h2>03</h2>
-            <article class="box">
-              <p>lorem ipsum 3</p>
-            </article>
-          </div>
-          <div class="bg bg3"></div>
-        </div>
-        <div class="column">
-          <div class="content">
-            <h2>04</h2>
-            <article class="box">
-              <p>lorem ipsum 4</p>
-            </article>
-          </div>
-          <div class="bg bg4"></div>
-        </div>
+        <folio-item
+                v-for="item in items"
+                :key="item.id"
+                :number="item.id"
+                :title="item.title"
+                :content="item.content"
+                :id="item.id"
+        >
+        </folio-item>
       </div>
     </main>
   </div>
@@ -52,15 +25,43 @@
 
 <script>
 import About from './components/About.vue'
+import FolioItem from './components/FolioItem'
 
 export default {
   name: 'app',
   components: {
+    FolioItem,
     About
   },
   data () {
     return {
-      show: false
+      show: false,
+      items: [
+        {
+          'id': 1,
+          'title': 'projet de site portfolio',
+          'image': '',
+          'content': ''
+        },
+        {
+          'id': 2,
+          'title': 'projet de site vitrine',
+          'image': '',
+          'content': ''
+        },
+        {
+          'id': 3,
+          'title': 'projet de site PWA du cours du bitcoin',
+          'image': '',
+          'content': ''
+        },
+        {
+          'id': 4,
+          'title': 'projet de site transfert de fichiers',
+          'image': '',
+          'content': ''
+        }
+      ]
     }
   },
   methods: {
@@ -161,122 +162,5 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-}
-.column {
-  width: 25%;
-  height: 100%;
-  float: left;
-  border-right: 1px solid rgba(0,0,0,0.5);
-  box-sizing: border-box;
-}
-.column:last-child {
-  border-right: none;
-}
-.content {
-  position: relative;
-  height: 100%;
-}
-.content h2 {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 100%;
-  background: rgba(100,100,100,0.5);
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  color: rgba(255,255,255,0.2);
-  font-size: 15em;
-  z-index: 1;
-}
-.box {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  height: 50%;
-  -webkit-transform: translateY(100%);
-  -moz-transform: translateY(100%);
-  -ms-transform: translateY(100%);
-  -o-transform: translateY(100%);
-  transform: translateY(100%);
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 10px;
-  background: rgba(255,255,255,1);
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
-  opacity: 0;
-}
-.column.active .content .box {
-  opacity: 1;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.column .bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-.column.active .bg.bg1 {
-  background: rgba(0,0,0,1);
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  -webkit-transition: 0.5s;
-  -moz-transition:  0.5s;
-  -ms-transition:  0.5s;
-  -o-transition:  0.5s;
-  transition:  0.5s;
-}
-.column.active .bg.bg2 {
-  background: rgba(0,100,200,1);
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  -webkit-transition: 0.5s;
-  -moz-transition:  0.5s;
-  -ms-transition:  0.5s;
-  -o-transition:  0.5s;
-  transition:  0.5s;
-}
-.column.active .bg.bg3 {
-  background: rgba(0,100,150,1);
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  -webkit-transition: 0.5s;
-  -moz-transition:  0.5s;
-  -ms-transition:  0.5s;
-  -o-transition:  0.5s;
-  transition:  0.5s;
-}
-.column.active .bg.bg4 {
-  background: rgba(100,150,200,1);
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  -webkit-transition: 0.5s;
-  -moz-transition:  0.5s;
-  -ms-transition:  0.5s;
-  -o-transition:  0.5s;
-  transition:  0.5s;
 }
 </style>
