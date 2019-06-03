@@ -1,5 +1,5 @@
 <template>
-  <div class="column" @mouseover="showItem">
+  <div class="column" @mouseover="handleClass">
     <div class="content">
       <h2>0{{ number }}</h2>
       <article class="box">
@@ -21,16 +21,11 @@ export default {
     id: Number
   },
   methods: {
-    showItem: function () {
+    handleClass: function () {
       const column = document.getElementsByClassName('column')
       console.log('coucou', column[this.number - 1])
-      column[this.number - 1].classList.add('active')
-      let next = column[this.number - 1].nextSibling
-      let previous = column[this.number - 1].previousSibling
-      console.log('siblings', next, previous)
-      if (next.classList.contains('active') || previous.classList.contains('active') || (previous.classList.contains('active') && next === null)) {
-        previous.classList.remove('active')
-        next.classList.remove('active')
+      if (!column[this.number - 1].classList.contains('active')) {
+        column[this.number - 1].classList.add('active')
       }
     }
   }
