@@ -1,14 +1,21 @@
 <template>
-  <div class="column" @mouseover="handleClass">
-    <div class="content">
-      <h2>0{{ number }}</h2>
-      <article class="box">
-        <h3>{{ title }}</h3>
-        <p>{{ content }}</p>
-      </article>
-    </div>
-    <div :class="'bg bg' + id"></div>
-  </div>
+  <v-flex style="height: 100%;" @mouseover="handleClass">
+      <div
+              slot-scope="{ hover }"
+      >
+        <h2>0{{ number }}</h2>
+        <v-hover>
+          <v-card
+                  v-if="hover"
+                  class="v-card--reveal"
+          >
+            <v-card-title>{{ title }}</v-card-title>
+            <v-card-text>{{ content }}</v-card-text>
+          </v-card>
+        </v-hover>
+      </div>
+      <div :class="'bg bg' + id"></div>
+    </v-flex>
 </template>
 
 <script>
@@ -42,6 +49,14 @@ export default {
 }
 .column:last-child {
   border-right: none;
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: .5;
+  position: absolute;
+  width: 100%;
 }
 .content {
   position: relative;
