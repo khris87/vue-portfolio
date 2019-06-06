@@ -1,32 +1,18 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
+    <Navigation />
     <v-content>
-      <v-container fluid class="pa-0">
-        <v-layout row>
-          <folio-item
-                  v-for="item in items"
-                  :key="item.id"
-                  :id="item.id"
-                  :number="item.id"
-                  :title="item.title"
-                  :content="item.content"
-          >
-          </folio-item>
+      <v-container fluid pa-0>
+        <v-layout row wrap>
+            <folio-item
+                    v-for="item in items"
+                    :key="item.id"
+                    :id="item.id"
+                    :number="item.id"
+                    :title="item.title"
+                    :content="item.content"
+            >
+            </folio-item>
         </v-layout>
       </v-container>
     </v-content>
@@ -35,20 +21,24 @@
 
 <script>
 import FolioItem from './components/FolioItem'
+import Navigation from './components/Navigation'
 
 export default {
   name: 'App',
   components: {
-    FolioItem
+    FolioItem,
+    Navigation
   },
   data () {
     return {
+      show: false,
       items: [
         {
           'id': 1,
           'title': 'projet de site portfolio',
           'image': '',
-          'content': ''
+          'content': 'véritable fil rouge de la formation Aformac, le site portfolio est réalisé entièrement' +
+            ' sous le framework VueJs'
         },
         {
           'id': 2,
@@ -70,6 +60,12 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    //
   }
 }
 </script>
+
+<style>
+</style>

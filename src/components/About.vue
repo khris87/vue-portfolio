@@ -1,6 +1,5 @@
 <template>
   <div id="about">
-    <Navigation />
     <div class="left_part">
       <h3>{{ firstname }}</h3>
       <h3>{{ lastname }}</h3>
@@ -18,12 +17,10 @@
 </template>
 
 <script>
-import Navigation from './Navigation'
-
 export default {
   name: 'About',
   components: {
-    Navigation
+    //
   },
   data () {
     return {
@@ -42,23 +39,6 @@ export default {
 </script>
 
 <style scoped>
-  * {
-    font-family: 'Gothic A1', sans-serif;
-    font-size: 36px;
-  }
-  #about {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(50,0,0,0.9);
-    color: #FFFFFF;
-    margin: auto;
-    white-space: normal;
-    overflow-x: hidden;
-    z-index: 5;
-  }
   .background_title {
     font-family: 'Monoton', cursive;
     font-size: 8em;
