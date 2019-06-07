@@ -4,7 +4,7 @@
     <v-content>
       <v-container fluid pa-0>
         <v-layout row wrap>
-            <folio-item
+          <folio-item
                     v-for="item in items"
                     :key="item.id"
                     :id="item.id"
@@ -68,4 +68,7 @@ export default {
 </script>
 
 <style>
+#app {
+  background-color: transparent;
+}
 </style>

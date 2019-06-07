@@ -4,6 +4,7 @@
           :close-on-content-click="false"
           content-class="navigation"
           min-width="100%"
+          lazy
   >
     <template v-slot:activator="{ on }">
       <div
@@ -15,37 +16,50 @@
         <div id="innerDown"></div>
       </div>
     </template>
-    <v-layout>
-      <v-flex id="left-menu" sm4>
+    <v-layout row wrap>
+      <v-flex xs12 sm3>
         <v-list class="list">
-          <v-list-tile>
-            <v-list-tile-action>
-              <v-icon>fas fa-home</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-title class="display-1 font-weight-thin text--lighten-1" style="height: 50px;">Accueil</v-list-tile-title>
-          </v-list-tile>
-          <v-list-tile>
+          <v-list-tile @click="showMe = !showMe">
             <v-list-tile-action>
               <v-icon>fas fa-address-card</v-icon>
             </v-list-tile-action>
-            <v-list-tile-title class="display-1 font-weight-thin text--lighten-1" style="height: 50px;">A propos</v-list-tile-title>
+            <v-list-tile-title class="font-weight-thin text--lighten-1">A propos</v-list-tile-title>
           </v-list-tile>
           <v-list-tile @click="showForm = !showForm">
             <v-list-tile-action>
               <v-icon>fab fa-telegram-plane</v-icon>
             </v-list-tile-action>
-            <v-list-tile-title class="display-1 font-weight-thin text--lighten-1" style="height: 50px;">Contactez moi</v-list-tile-title>
+            <v-list-tile-title class="font-weight-thin text--lighten-1">Contactez moi</v-list-tile-title>
           </v-list-tile>
           <v-list-tile>
             <v-list-tile-action>
               <v-icon>fas fa-file-download</v-icon>
             </v-list-tile-action>
-            <v-list-tile-title class="display-1 font-weight-thin text--lighten-1" style="height: 50px;"><a :href="require('../assets/essai.jpg')" download="cv-christophe-masdoumier">Téléchargez mon CV</a></v-list-tile-title>
+            <v-list-tile-title class="font-weight-thin text--lighten-1"><a :href="require('../assets/essai.jpg')" download="cv-christophe-masdoumier">Téléchargez mon CV</a></v-list-tile-title>
           </v-list-tile>
         </v-list>
       </v-flex>
-      <v-flex id="right-menu" sm8>
-        <Contact v-show="showForm" />
+      <v-flex xs12 sm9>
+        <v-layout column>
+          <v-flex xs12-and-up class="show-in-content">
+            <transition
+                    name="custom-classes-transition"
+                    enter-active-class="animated slideInDown"
+                    leave-active-class="animated slideOutUp"
+            >
+              <About v-show="showMe" />
+            </transition>
+          </v-flex>
+          <v-flex xs12-and-up class="show-in-content">
+            <transition
+                    name="custom-classes-transition"
+                    enter-active-class="animated bounceInRight"
+                    leave-active-class="animated bounceOutRight"
+            >
+              <Contact v-show="showForm" />
+            </transition>
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-menu>
@@ -53,12 +67,19 @@
 
 <script>
 import Contact from './Contact'
+import About from './About'
+
 export default {
   name: 'navigation',
-  components: { Contact },
+  components: {
+    Contact,
+    About
+  },
   data () {
     return {
-      showForm: false
+      show: false,
+      showForm: false,
+      showMe: false
     }
   },
   methods: {
@@ -84,25 +105,24 @@ export default {
 
 <style scoped>
   .navigation {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: 0 !important;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(50,0,0,0.8);
     margin: auto;
     white-space: normal;
     overflow-x: hidden;
+    background-color: rgba(183,28,28,0.9);
   }
   .list {
-    background-color: rgba(50,0,0,0);
+    background-color: rgba(0,0,0,0);
   }
   .list a {
     text-decoration: none;
     color: #000;
   }
   #outer {
-    position: absolute;
+    position: fixed;
     top: 50px;
     right: 50px;
     width: 70px;
@@ -124,5 +144,8 @@ export default {
   }
   #innerDown {
     bottom: 20%;
+  }
+  .show-in-content {
+    height: 50%;
   }
 </style>
