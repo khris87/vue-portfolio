@@ -35,7 +35,7 @@
             <v-list-tile-action>
               <v-icon>fas fa-file-download</v-icon>
             </v-list-tile-action>
-            <v-list-tile-title class="font-weight-thin text--lighten-1"><a :href="require('../assets/essai.jpg')" download="cv-christophe-masdoumier">Téléchargez mon CV</a></v-list-tile-title>
+            <v-list-tile-title class="font-weight-thin text--lighten-1"><a :href="require('../assets/CVdevweb_0619.svg')" download="cv-christophe-masdoumier.svg">Téléchargez mon CV</a></v-list-tile-title>
           </v-list-tile>
         </v-list>
       </v-flex>
