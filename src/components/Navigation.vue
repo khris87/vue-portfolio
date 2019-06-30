@@ -17,7 +17,7 @@
       </div>
     </template>
     <v-layout row wrap>
-      <v-flex xs12 sm3>
+      <v-flex xs12>
         <v-list class="list">
           <v-list-tile @click="showMe = !showMe">
             <v-list-tile-action>
@@ -39,7 +39,7 @@
           </v-list-tile>
         </v-list>
       </v-flex>
-      <v-flex xs12 sm9>
+      <v-flex xs12>
         <v-layout column>
           <v-flex xs12-and-up class="show-in-content">
             <transition

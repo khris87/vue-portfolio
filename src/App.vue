@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <HelloWorld />
     <Navigation />
     <v-content>
       <v-container fluid pa-0>
@@ -22,12 +23,14 @@
 <script>
 import FolioItem from './components/FolioItem'
 import Navigation from './components/Navigation'
+import HelloWorld from './components/HelloWorld'
 
 export default {
   name: 'App',
   components: {
     FolioItem,
-    Navigation
+    Navigation,
+    HelloWorld
   },
   data () {
     return {

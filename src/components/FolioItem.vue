@@ -51,7 +51,6 @@ export default {
 .v-card--reveal {
   background: darkgrey;
   position: absolute;
-  /*transform: translateY(-90%);*/
   width: 25%;
   height: 50vh;
 }
